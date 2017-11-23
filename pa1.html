@@ -88,12 +88,12 @@ The remainder of this section describes the steps needed to clone and compile th
 		href="https://github.com/wjakob/nori">github</a>.
 		To check out a copy of the source code, enter
 	</p>
-	<pre class="prettyprint lang-bash">
-$ git clone --recursive
-	https://github.com/wjakob/nori</pre>
+<pre class="prettyprint lang-bash">
+$ git clone --recursive --single-branch  https://github.com/DrLSimon/nori</pre>
 	<p>
 		on the terminal. The <tt>--recursive</tt> flags ensures
-		that all dependency libraries are cloned as well.
+		that all dependency libraries are cloned as well. The
+    <tt>--single-branch</tt> prevents from fetching the <tt>gh-pages</tt> branch.	
 		We'll likely publish extensions and bug-fixes to this
 		repository as the semester progresses. To get them, 
 		navigate into the <tt>nori</tt>directory and run the command
@@ -141,30 +141,23 @@ $ git pull</pre>
 <h3>Part 2: Setting up a C++ compiler and building the base code</h3>
 <div class="row">
 	<div class="col-md-6">
-		<h3>Linux / Mac OS X</h3>
+		<h3>Configuring on Linux / Mac OS X</h3>
 		<p>
 		Begin by installing the
 		<a href="http://www.cmake.org/download/">CMake</a> build system on your
 		system. On Mac OS X, you will also need to install a reasonably
 		up-to-date version of XCode along with the command line tools.
 		On Linux, any reasonably recent version of GCC or Clang will work.
-		Navigate to the Nori folder, create a build directory and start <tt>cmake-gui</tt>, like so:
+		Navigate to the Nori folder, create a build directory and start <tt>cmake</tt>, like so:
 		</p>
 		<pre class="prettyprint lang-bash">
 $ cd path-to-nori
 $ mkdir build
 $ cd build
-$ cmake-gui ..</pre>
-		<div class="row-centered">
-			<div class="thumbnail col-md-7 col-centered">
-				<a class="fancybox" href="images/linux-cmake.png"><img src="images/linux-cmake.png"/></a>
-				<div class="caption">
-					Set the build type to "Unix Makefiles"
-					and then press the <em>Configure</em>
-					and <em>Generate</em> buttons.
-				</div>
-			</div>
-		</div>
+$ cmake .. -DCMAKE_BUILD_TYPE=Release</pre>
+  </div>
+	<div class="col-md-6">
+		<h3>Building on Linux / Mac OS X</h3>
 		After the Makefiles are generated, simply run
 		<tt>make</tt> to compile all dependencies and Nori itself.
 		<pre class="prettyprint lang-bash">
@@ -173,59 +166,6 @@ $ make -j 4</pre>
 		processors at the same time. Note that you will probably see many
 		warning messages while the dependencies are compiled—you can ignore
 		them.
-
-		<div class="row-centered">
-			<div class="thumbnail col-md-7 col-centered">
-				<a class="fancybox" href="images/build-type-linux.png"><img src="images/build-type-linux.png"/></a>
-				<div class="caption">
-					Tip: it's a good idea to set the build mode to <em>Release</em>
-					unless you are tracking down a particular bug. The debug
-					version runs <em>much slower</em> (by a factor of 50 or
-					more).
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<h3>Windows / Visual Studio 2013</h3>
-		<p>
-		Begin by installing Visual Studio 2013 (older versions won't do) and a
-		reasonably recent (≥ 3.x) version of <a href="http://www.cmake.org/download/">CMake</a>. Start CMake and navigate to the location where
-		you cloned the Nori repository.
-		</p>
-		<div class="row-centered">
-			<div class="thumbnail col-md-7 col-centered">
-				<a class="fancybox" href="images/cmake-windows.png"><img src="images/cmake-windows.png"/></a>
-				<div class="caption">
-					Be sure to select the Visual Studio 2013 <b>64</b> bit compiler.
-					It is also generally a good idea to choose a build directory
-					that is <em>different</em> from the source directory.
-				</div>
-			</div>
-		</div>
-		<p>
-		After setting up the project, click the <em>Configure</em> and
-		<em>Generate</em> button. This will create a file called
-		<tt>nori.sln</tt>—double-click it to open Visual Studio.
-		</p>
-
-		<div class="row-centered">
-			<div class="thumbnail col-md-7 col-centered">
-				<a class="fancybox" href="images/vs2013.png"><img src="images/vs2013.png"/></a>
-				<div class="caption">
-					The opened Visual Studio 2013 project. It's a good idea to
-					set the build mode to <em>Release</em> (see the red marker)
-					unless you are tracking down a particular bug. The debug
-					version runs <em>much slower</em> (by a factor of 50 or
-					more).
-				</div>
-			</div>
-		</div>
-		The <em>Build->Build Solution</em> menu item will automatically compile
-		all dependency libraries and Nori itself; the resulting executable is
-		written to the <tt>Release</tt> or <tt>Debug</tt> subfolder of your
-		chosen build directory. Note that you will probably see many warning
-		messages while the dependencies are compiled—you can ignore them.
 	</div>
 </div>
 
