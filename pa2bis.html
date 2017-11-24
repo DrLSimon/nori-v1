@@ -35,7 +35,12 @@ you have difficulties with this step, refer to the git tutorials mentioned in
 Assignment 1.
 </p>
 <p>
-Try rendering this new scene. You will find that rendering is <em>very</em> slow.
+The default version of Nori includes a very efficient acceleration structure (BVH).
+Start by deactivating this acceleration:
+<pre class="prettyprint lang-bash">
+git checkout noaccel -- include/nori/accel.h src/accel.cpp 
+</pre>
+Recompile Nori and try rendering this new scene. You will find that rendering is <em>very</em> slow.
 The reason for this is that the Nori basecode currently implements a brute
 force ray intersection algorithm found in the files
 <code>include/nori/accel.h</code> and <code>include/nori/accel.cpp</code>.
@@ -43,7 +48,7 @@ Our main concern is the function
 </p>
 
 <pre class="prettyprint lang-cpp">
-bool rayIntersect(const Ray3f &ray, Intersection &its, bool shadowRay) const;
+bool rayIntersect(Ray3f &ray, Intersection &its, bool shadowRay) const;
 </pre>
 
 <p>
@@ -173,7 +178,7 @@ Having completed the acceleration data structure, the next step is to actually
 use it to trace rays. Modify the function
 </p>
 <pre class="prettyprint lang-cpp">
-bool rayIntersect(const Ray3f &ray, Intersection &its, bool shadowRay) const;
+bool rayIntersect(Ray3f &ray, Intersection &its, bool shadowRay) const;
 </pre>
 <p>
 so that it performs a hierarchical traversal of the tree, which only visits
