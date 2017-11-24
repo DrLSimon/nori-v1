@@ -42,6 +42,7 @@ add_executable(nori
   include/nori/bitmap.h
   include/nori/block.h
   include/nori/bsdf.h
+  include/nori/shape.h
   include/nori/accel.h
   include/nori/camera.h
   include/nori/color.h
@@ -66,6 +67,7 @@ add_executable(nori
   # Source code files
   src/bitmap.cpp
   src/block.cpp
+  src/shape.cpp
   src/accel.cpp
   src/chi2test.cpp
   src/common.cpp
