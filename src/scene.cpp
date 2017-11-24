@@ -112,21 +112,30 @@ std::string Scene::toString() const {
             shapes += ",";
         shapes += "\n";
     }
+    std::string emitters;
+    for (size_t i=0; i<m_emitters.size(); ++i) {
+        emitters += std::string("  ") + indent(m_emitters[i]->toString(), 2);
+        if (i + 1 < m_emitters.size())
+            emitters += ",";
+        emitters += "\n";
+    }
 
     return tfm::format(
         "Scene[\n"
         "  integrator = %s,\n"
         "  sampler = %s\n"
         "  camera = %s,\n"
-        "  bvh = %s,\n"
+        "  accel = %s,\n"
         "  shapes = %s,\n"
+        "  emitters = {\n"
         "  %s  }\n"
         "]",
         indent(m_integrator->toString()),
         indent(m_sampler->toString()),
         indent(m_camera->toString()),
         indent(m_accel->toString()),
-        indent(shapes, 2)
+        indent(shapes, 2),
+        indent(emitters, 2)
     );
 }
 
