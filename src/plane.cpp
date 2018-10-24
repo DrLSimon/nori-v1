@@ -72,16 +72,10 @@ private:
     ray.maxt = its.t = t;
     its.p = ray(its.t);
     its.uv = Point2f(its.p.x(), its.p.z());
-    its.bsdf = getBSDF();
-    its.emitter = getEmitter();
+    its.bsdf = m_bsdf;
+    its.emitter = m_emitter;
     its.geoFrame = its.shFrame = Frame(n);
   }
-
-  /// Return a pointer to an attached area emitter instance (const version)
-  const Emitter *getEmitter() const { return m_emitter; }
-
-  /// Return a pointer to the BSDF associated with this mesh
-  const BSDF *getBSDF() const { return m_bsdf; }
 
 private:
   BSDF *m_bsdf = nullptr;       ///< BSDF of the surface
