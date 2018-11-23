@@ -222,6 +222,40 @@ git pull
 			</div>
 		</div>
 	</div>
+
+	<h3>Part 2.1: Ambient occlusion <em>(20 points)</em></h3>
+    <p>
+        Ambient occlusion is rendering technique which assumes that a (diffuse)
+        surface receives uniform illumination from all directions (similar to
+        the conditions inside a <a
+        href="https://en.wikipedia.org/wiki/Lightbox#/media/File:DIY_Lightbox.jpg">light
+    box</a>), and that visibility is the only effect that matters. Some surface positions
+will receive less light than others since they are occluded, hence they will look darker.
+Formally, the quantity computed by ambient occlusion is defined as
+    </p>
+\[
+L(\mathbf{x})=\int_{H^2(\mathbf{x})}V(\mathbf{x}, \mathbf{x}+\alpha\omega)\,\frac{\cos\theta}{\pi}\,\mathrm{d}\omega
+\]
+<p>
+which is an integral over the upper hemisphere centered at the point
+\(\mathbf{x}\). The variable \(\theta\) refers to the angle between the direction \(\omega\)
+and the shading normal at \(\mathbf{x}\). The ad-hoc variable \(\alpha\) adjusts
+how far-reaching the effects of occlusion are.
+</p>
+<p>
+Note that this situation—sampling points on the hemisphere with a cosine weight—exactly corresponds
+to one of the warping functions you implemented in part 1, specifically <code>squareToCosineHemisphere</code>. Use this function to sample a point on the hemisphere and then check for visibility
+using a shadow ray query. You can assume that occlusion is a global effect (i.e. \(\alpha=\infty\)).
+</p>
+
+<p>
+One potential gotcha is that the samples produced by <code>squareToCosineHemisphere</code> lie in the reference hemisphere and need to be oriented according to the surface at \(\mathbf{x}\). Take a look at the <code>Frame</code> class, which is intended to facilitate this.
+</p>
+
+<p>
+    Implement the ambient occlusion (<code>ao</code>) integrator and render the scene <code>scenes/ajax/ajax-ao.xml</code>.
+        Include a comparison against our <a href="https://rgl.s3.eu-central-1.amazonaws.com/media/uploads/wjakob/2017/03/13/ajax-ao.exr">reference image</a> in your report.
+
 	<h3>Part 2.2: Point lights <em>(20 points)</em></h3>
 	<p>
         The updated base code includes a new scene <code>scenes/pa3/ajax-simple.xml</code> that instantiates a (currently nonexistent) integrator/rendering algorithm named <code>simple</code>, which simulates a single point
@@ -272,39 +306,6 @@ L(\mathbf{x})=\frac{\Phi}{4\pi^2} \frac{\mathrm{max}(0, \cos\theta)}{\|\mathbf{x
     render the scene <code>scenes/pa3/ajax-simple.xml</code>.
     Include a comparison against our <a href="https://rgl.s3.eu-central-1.amazonaws.com/media/uploads/wjakob/2017/03/13/ajax-simple.exr">reference image</a> in your report.
 	</p>
-
-	<h3>Part 2.1: Ambient occlusion <em>(20 points)</em></h3>
-    <p>
-        Ambient occlusion is rendering technique which assumes that a (diffuse)
-        surface receives uniform illumination from all directions (similar to
-        the conditions inside a <a
-        href="https://en.wikipedia.org/wiki/Lightbox#/media/File:DIY_Lightbox.jpg">light
-    box</a>), and that visibility is the only effect that matters. Some surface positions
-will receive less light than others since they are occluded, hence they will look darker.
-Formally, the quantity computed by ambient occlusion is defined as
-    </p>
-\[
-L(\mathbf{x})=\int_{H^2(\mathbf{x})}V(\mathbf{x}, \mathbf{x}+\alpha\omega)\,\frac{\cos\theta}{\pi}\,\mathrm{d}\omega
-\]
-<p>
-which is an integral over the upper hemisphere centered at the point
-\(\mathbf{x}\). The variable \(\theta\) refers to the angle between the direction \(\omega\)
-and the shading normal at \(\mathbf{x}\). The ad-hoc variable \(\alpha\) adjusts
-how far-reaching the effects of occlusion are.
-</p>
-<p>
-Note that this situation—sampling points on the hemisphere with a cosine weight—exactly corresponds
-to one of the warping functions you implemented in part 1, specifically <code>squareToCosineHemisphere</code>. Use this function to sample a point on the hemisphere and then check for visibility
-using a shadow ray query. You can assume that occlusion is a global effect (i.e. \(\alpha=\infty\)).
-</p>
-
-<p>
-One potential gotcha is that the samples produced by <code>squareToCosineHemisphere</code> lie in the reference hemisphere and need to be oriented according to the surface at \(\mathbf{x}\). Take a look at the <code>Frame</code> class, which is intended to facilitate this.
-</p>
-
-<p>
-    Implement the ambient occlusion (<code>ao</code>) integrator and render the scene <code>scenes/ajax/ajax-ao.xml</code>.
-        Include a comparison against our <a href="https://rgl.s3.eu-central-1.amazonaws.com/media/uploads/wjakob/2017/03/13/ajax-ao.exr">reference image</a> in your report.
 
     <h2> Hacker Points: Hierarchical Sample Warping <em>(20 points)</em></h2>
 
