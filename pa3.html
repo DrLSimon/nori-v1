@@ -253,7 +253,11 @@ One potential gotcha is that the samples produced by <code>squareToCosineHemisph
 </p>
 
 <p>
-    Implement the ambient occlusion (<code>ao</code>) integrator and render the scene <code>scenes/ajax/ajax-ao.xml</code>.
+    Implement the ambient occlusion (<code>ao</code>) integrator and render the scene <code>scenes/ajax/ajax-ao.xml</code>. Here is a short excerpt of this file:
+<pre class="prettyprint lang-xml">
+&lt;!-- An excerpt from scenes/pa3/ajax-ao.xml: --&gt;
+&lt;integrator type="ao"/&gt;
+</pre>
         Include a comparison against our <a href="https://rgl.s3.eu-central-1.amazonaws.com/media/uploads/wjakob/2017/03/13/ajax-ao.exr">reference image</a> in your report.
 
 	<h3>Part 2.2: Point lights <em>(20 points)</em></h3>
