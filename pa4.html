@@ -15,7 +15,7 @@
         repository by running
     </p>
 <pre class="prettyprint lang-bash">
-git pull https://github.com/wjakob/nori
+git pull 
 </pre>
     <p>
         If there were any concurrent changes to the same file, you
@@ -31,7 +31,7 @@ git checkout bvhaccel -- include/nori/accel.h src/accel.cpp
     Naturally, you may also continue using your own acceleration data structure.
     </p>
 
-    <h3>1. Area lights (30 pts)</h3>
+    <h3>1. Area lights (3 pts)</h3>
     <p>
         Our first goal will be to extend Nori so that any geometric object can
         be turned into a light source known as an <em>area light</em>.
@@ -122,7 +122,7 @@ git checkout bvhaccel -- include/nori/accel.h src/accel.cpp
     </ol>
 
 
-    <h3>2. Distribution Ray Tracing (30 pts)</h3>
+    <h3>2. Distribution Ray Tracing (3 pts)</h3>
 		<p>
             In this part you will implement a new direct illumination
             integrator, which integrates the incident radiance by sampling
@@ -265,7 +265,7 @@ However, this will require a few extra pieces of functionality.
         Discuss the design choices and challenges you faced in your report. Render the scene <code>scenes/pa4/motto-diffuse.xml</code> and don't forget to include a comparison against our reference solution:
     <a href="//rgl.s3.eu-central-1.amazonaws.com/media/uploads/wjakob/2017/03/24/motto-diffuse.exr"><tt>motto-diffuse.exr</tt></a>.
 <p>
-    <h3>3. Dielectrics (30 pts)</h3>
+    <h3>3. Dielectrics (3 pts)</h3>
         <div class="row" style="margin: 30px">
             <div class="col-md-4">
                 <div class="thumbnail" style="margin: 10px">
@@ -303,7 +303,7 @@ However, this will require a few extra pieces of functionality.
         materials simply omit this step.
     </p>
 
-    <h3>4. Whitted-style ray tracing (10 pts)</h3>
+    <h3>4. Whitted-style ray tracing (1 pts)</h3>
     <p>
         The final step of this assignment involves extending the distribution
         ray tracer to turn it into a <em>Whitted</em>-style ray tracer (named after Turner Whitted) that
@@ -362,7 +362,7 @@ However, this will require a few extra pieces of functionality.
     <a href="//rgl.s3.eu-central-1.amazonaws.com/media/uploads/wjakob/2017/03/24/cbox.exr"><tt>cbox.exr</tt></a>.
     </p>
 
-	<h3> Hacker Points: Specialized Light Source Sampling <em>(15 points)</em></h3>
+	<h3> Hacker Points: Specialized Light Source Sampling <em>(2 pts)</em></h3>
 <div class="alert alert-info" role="alert"><b>Disclaimer</b>: Hacker points are “underpriced” bonus points 
 for the daring few. Sometimes you might be required to implement something that was not taught in class and 
 you might have to do some research and creative thinking. Hacker Points are awarded only to students who 
